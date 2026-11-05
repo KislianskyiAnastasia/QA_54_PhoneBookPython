@@ -28,7 +28,7 @@ class LoginPage:
 
 
     def click_login_button(self):
-        self.driver.find_element(*self.BUTTON_LOGIN).click()
+        return self.driver.find_element(*self.BUTTON_LOGIN).click()
 
     # def is_sign_out_displayed(self):
     #     return self.driver.find_element(*self.SIGN_OUT_BUTTON).is_displayed()
