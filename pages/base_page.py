@@ -1,3 +1,4 @@
+from selenium.common import TimeoutException
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -23,3 +24,12 @@ class BasePage:
 
     def accept_alert(self):
         self.driver.switch_to.alert.accept()
+
+    def is_alert_visible(self):
+        try:
+            WebDriverWait(self.driver, timeout=10).until(
+                expected_conditions.alert_is_present()
+            )
+            return True
+        except TimeoutException:
+            return False

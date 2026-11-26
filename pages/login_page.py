@@ -1,3 +1,4 @@
+import logging
 from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
@@ -5,6 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.base_page import BasePage
 
+logger = logging.getLogger(__name__)
 
 class LoginPage(BasePage):
     LOGIN_LINK = (By.CSS_SELECTOR, "a[href='/login']")
@@ -17,6 +19,8 @@ class LoginPage(BasePage):
     #     self.driver = driver
 
     def open_login_page(self):
+        logger.info("Opening Login form")
+
         self.click(self.LOGIN_LINK)
 
     def fill_email_field(self,email):
@@ -40,12 +44,3 @@ class LoginPage(BasePage):
         except TimeoutException:
             return False
 
-
-    # def get_alert_text(self):
-    #     alert = WebDriverWait(self.driver,timeout=10).until(
-    #         expected_conditions.alert_is_present()
-    #     )
-    #     return alert.text
-
-    # def accept_alert(self):
-    #     self.driver.switch_to.alert.accept()
